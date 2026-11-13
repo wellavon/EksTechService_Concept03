@@ -1,0 +1,562 @@
+/* =========================================================
+   Concept 04 — «Пульт» · VHS edition
+   ЭксТехСервис · ремонт спецтехники · Сыктывкар
+   Палитра: чёрный, тёмно-серый, янтарь, приглушённый зелёный
+   ========================================================= */
+
+:root{
+  --bg:#0a0a0a;
+  --bg-2:#121212;
+  --panel:#1a1a1a;
+  --panel-2:#222222;
+  --line:#333333;
+  --line-soft:#262626;
+  --text:#d8d4cc;
+  --text-2:#a8a29a;
+  --muted:#6f6a63;
+  --on:#7fa650;            /* люминофорный зелёный */
+  --on-soft:rgba(127,166,80,.14);
+  --warn:#f9cf28;     
+  --warn-soft:rgba(240,165,0,.14);
+  --red:#c9553f;
+  --radius:4px;
+  --maxw:1200px;
+  --sans:'Space Grotesk',Inter,system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --pixel:'Press Start 2P',monospace;
+  --wide:'Unbounded','Space Grotesk',sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+h1,h2,h3{font-family:var(--sans);font-weight:700;line-height:1.1;letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.2vw,40px)}
+h3{font-size:18px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.placeholder{color:var(--warn);font-weight:600;border-bottom:1px dashed rgba(240,165,0,.5)}
+
+/* ---------- Dots ---------- */
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex:none}
+.dot-on{background:var(--on);box-shadow:0 0 0 3px var(--on-soft)}
+.dot-warn{background:var(--warn);box-shadow:0 0 0 3px var(--warn-soft)}
+.blink{animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 20px;border-radius:var(--radius);
+  font-family:var(--sans);font-weight:600;font-size:14px;
+  transition:.18s ease;white-space:nowrap;border:1px solid transparent;
+}
+.btn-primary{background:var(--warn);color:#0a0a0a;border-color:var(--warn)}
+.btn-primary:hover{background:#ffb92e;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--warn);color:var(--warn)}
+.btn-call{background:var(--panel);color:var(--warn);border-color:var(--line)}
+.btn-call:hover{border-color:var(--warn);background:var(--panel-2)}
+.btn-block{width:100%}
+
+/* ---------- Status bar ---------- */
+.statusbar{background:#050505;border-bottom:1px solid var(--line-soft);font-family:var(--mono);font-size:11px}
+.statusbar-inner{display:flex;gap:24px;align-items:center;height:34px;flex-wrap:wrap}
+.sb-item{display:flex;align-items:center;gap:8px;color:var(--text-2);letter-spacing:.04em}
+.sb-right{margin-left:auto;color:var(--on)}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,10,10,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:18px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-mark{
+  width:34px;height:34px;border-radius:3px;background:var(--warn);color:#0a0a0a;
+  display:grid;place-items:center;font-family:var(--sans);font-weight:700;font-size:16px;flex:none;
+}
+.logo-text{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.01em}
+.nav-links{display:flex;gap:24px;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--text-2)}
+.nav-links a{position:relative;padding:4px 0;transition:.15s}
+.nav-links a:hover{color:var(--warn)}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--warn);transition:.2s}
+.nav-links a:hover::after{width:100%}
+.header-actions{display:flex;align-items:center;gap:10px}
+.burger{display:none;width:42px;height:42px;border:1px solid var(--line);border-radius:var(--radius);font-size:18px;color:var(--text)}
+.mobile-menu{display:none;background:var(--panel);border-top:1px solid var(--line)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:14px 22px;border-bottom:1px solid var(--line-soft);font-size:14px;font-weight:500}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  position:relative;
+  padding:48px 0 56px;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+  background-image:url("background.png");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
+.hero-credit{
+  position:absolute;
+  right:16px;
+  bottom:12px;
+  z-index:3;
+  font-family:var(--mono);
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  background:rgba(10,10,10,.6);
+  padding:4px 8px;
+  border:1px solid var(--line);
+  border-radius:3px;
+  pointer-events:none;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:linear-gradient(180deg, rgba(10,10,10,.75) 0%, rgba(10,10,10,.85) 100%);
+  pointer-events:none;
+}
+.hero-noise{
+  position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0 0.8 0 0 0 0.9 0'/></filter><rect width='120' height='120' filter='url(%23n)'/></svg>");
+}
+.hero-inner{position:relative;z-index:1;display:block}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--on);margin-bottom:20px;
+}
+.hero-title{
+  display:flex;flex-direction:column;
+  width:100%;
+  font-family:var(--sans);
+  font-weight:700;
+  line-height:.92;
+  letter-spacing:-.02em;
+  margin-bottom:30px;
+}
+.t-line{display:block;white-space:nowrap}
+.t-line-1{font-size:clamp(0px,7.5vw,104px);text-align:left}
+.t-line-2{font-size:clamp(44px,9.6vw,132px);text-align:left;padding-left:clamp(20px,7vw,110px);margin-top:-.04em}
+.t-line-3{font-size:clamp(36px,7.6vw,104px);text-align:left;padding-left:clamp(44px,15vw,220px);margin-top:-.02em}
+
+/* Пиксельное «Ремонт» */
+.t-pixel{
+  font-family:var(--pixel);
+  font-weight:400;
+  font-size:.92em;          /* базовый размер пиксельного шрифта */
+  letter-spacing:.02em;
+  color:var(--warn);
+  line-height:1.2;
+  display:inline-block;
+  transform:translateY(-.12em);
+  text-shadow:2px 2px 0 rgba(0,0,0,.6);
+}
+.t-wide{font-family:var(--wide);font-weight:700;letter-spacing:-.01em}
+
+/* Нижняя часть */
+.hero-bottom{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
+.hero-lead{color:var(--text-2);font-size:clamp(15px,1.4vw,17px);max-width:540px;margin-bottom:24px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* =========================================================
+   VHS-оболочка
+   ========================================================= */
+.vhs{position:relative}
+.vhs-screen{
+  position:relative;
+  background:var(--panel);
+  border:2px solid var(--line);
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:inset 0 0 60px rgba(0,0,0,.6), 0 12px 30px rgba(0,0,0,.5);
+}
+/* сканлайны */
+.vhs-scan{
+  position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:repeating-linear-gradient(180deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+/* лёгкое мерцание */
+.vhs-screen::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:linear-gradient(180deg, rgba(255,255,255,.03) 0%, transparent 20%, transparent 80%, rgba(0,0,0,.15) 100%);
+  animation:flicker 6s infinite;
+}
+@keyframes flicker{
+  0%,100%{opacity:.4}
+  47%{opacity:.4}
+  48%{opacity:.9}
+  49%{opacity:.3}
+  50%{opacity:.7}
+  51%{opacity:.4}
+}
+.vhs-head{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;border-bottom:1px solid var(--line);
+  background:#0e0e0e;font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--text-2);position:relative;z-index:3;
+}
+.vhs-rec,.vhs-play{display:inline-flex;align-items:center;gap:8px;color:var(--warn)}
+.vhs-ch{color:var(--muted)}
+.vhs-label{
+  margin-top:8px;text-align:right;
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* =========================================================
+   STATUS PANEL (VHS)
+   ========================================================= */
+.vhs-panel .panel-list{list-style:none;position:relative;z-index:3}
+.vhs-panel .panel-item{
+  display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;
+  padding:12px 16px;border-bottom:1px solid var(--line-soft);
+  font-size:13px;color:var(--text);
+}
+.vhs-panel .panel-item:last-child{border-bottom:none}
+.pi-name{color:var(--text)}
+.pi-state{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.panel-foot{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-top:1px solid var(--line);background:#0e0e0e;
+  font-family:var(--mono);position:relative;z-index:3;
+}
+.panel-clock{font-size:14px;color:var(--on);letter-spacing:.08em}
+.panel-tz{font-size:10px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+
+/* =========================================================
+   TICKER
+   ========================================================= */
+.ticker{background:#050505;border-bottom:1px solid var(--line);overflow:hidden;padding:10px 0}
+.ticker-track{
+  display:flex;gap:24px;white-space:nowrap;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-2);animation:ticker 28s linear infinite;width:max-content;
+}
+.ticker-track span:nth-child(2n){color:var(--warn)}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+.section{padding:76px 0;border-bottom:1px solid var(--line)}
+.section-head{max-width:640px;margin-bottom:40px}
+.section-head h2{margin-bottom:10px}
+.section-head p{color:var(--text-2);font-size:14px}
+.eyebrow{
+  display:inline-block;font-family:var(--mono);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--warn);
+  margin-bottom:14px;
+}
+
+/* =========================================================
+   SERVICES
+   ========================================================= */
+.services-section{background:var(--bg-2)}
+.channels{list-style:none;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--panel)}
+.channel{
+  display:grid;grid-template-columns:auto 44px 1fr auto auto;gap:20px;align-items:center;
+  padding:18px 22px;border-bottom:1px solid var(--line-soft);
+  transition:.15s;cursor:default;position:relative;
+}
+.channel:last-child{border-bottom:none}
+.channel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:var(--warn);transition:.2s}
+.channel:hover,.channel:focus-visible{background:var(--panel-2);outline:none}
+.channel:hover::before,.channel:focus-visible::before{width:3px}
+.ch-indicator{width:18px;display:flex;justify-content:center}
+.ch-num{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--muted)}
+.ch-body b{display:block;font-family:var(--sans);font-size:15px;font-weight:600;margin-bottom:4px;color:var(--text)}
+.ch-body p{font-size:13px;color:var(--text-2);margin:0}
+.ch-tags{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.ch-state{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--on);white-space:nowrap}
+
+/* =========================================================
+   TRUST
+   ========================================================= */
+/* =========================================================
+   TRUST — карточки-телевизоры с помехами
+   ========================================================= */
+.trust-section{background:var(--bg);position:relative;overflow:hidden}
+.trust-section .wrap{position:relative;z-index:2}
+
+.trust-title{
+  font-family:var(--wide);
+  font-weight:700;
+  letter-spacing:-.01em;
+}
+
+.system-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+  position:relative;z-index:2;
+  width:100%;          /* было max-width:1000px + margin:0 auto */
+  margin:0;            /* убираем центрирование */
+}
+
+.sys-card{
+  display:flex;flex-direction:column;gap:12px;
+  padding:0;           /* было 0 4px — край карточки совпадает с краем сетки */
+}
+
+/* корпус телевизора */
+.sys-tv{
+  position:relative;
+  width:100%;          /* было max-width:180px — теперь тянется на всю колонку */
+  background:linear-gradient(180deg,#2a2a2a 0%,#1c1c1c 100%);
+  border:2px solid #3a3a3a;
+  border-radius:10px;
+  padding:10px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 10px 24px rgba(0,0,0,.55);
+}
+.sys-tv::before,
+.sys-tv::after{
+  content:"";position:absolute;top:-20px;width:1.5px;height:20px;background:#3a3a3a;
+}
+.sys-tv::before{left:50%;transform:rotate(-20deg);transform-origin:bottom left}
+.sys-tv::after{left:50%;transform:rotate(20deg);transform-origin:bottom right}
+
+/* экран */
+.sys-tv-screen{
+  position:relative;
+  aspect-ratio:4/3;
+  background:#050505;
+  border:2px solid #0a0a0a;
+  border-radius:14px / 18px;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  padding:12px;
+  box-shadow:inset 0 0 30px rgba(0,0,0,.9);
+}
+
+/* контент внутри экрана */
+.sys-tv-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;gap:10px;
+  text-align:center;
+  max-width:100%;
+}
+.sys-tv-content p{
+  font-size:11px;
+  line-height:1.45;
+  color:var(--text-2);
+  margin:0;
+  word-break:break-word;
+}
+
+/* помехи */
+.sys-tv-noise{
+  position:absolute;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.9 0 0 0 0 0.85 0 0 0 0.6 0'/></filter><rect width='100' height='100' filter='url(%23n)'/></svg>");
+  opacity:.28;
+  mix-blend-mode:screen;
+  animation:sysNoise .8s steps(4) infinite;
+}
+@keyframes sysNoise{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(-2px,1px)}
+  50%{transform:translate(1px,-2px)}
+  75%{transform:translate(2px,2px)}
+  100%{transform:translate(0,0)}
+}
+
+/* сканлайны и бегущая полоса трекинга */
+.sys-tv-scan{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(180deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px);
+}
+.sys-tv-scan::after{
+  content:"";position:absolute;left:0;right:0;height:24%;
+  background:linear-gradient(180deg, transparent, rgba(127,166,80,.18), transparent);
+  animation:sysTracking 4s linear infinite;
+}
+@keyframes sysTracking{
+  0%{top:-30%}
+  100%{top:110%}
+}
+
+/* пиксельный заголовок */
+.sys-pixel{
+  font-family:var(--pixel);
+  font-weight:400;
+  font-size:9px;
+  line-height:1.5;
+  letter-spacing:.02em;
+  color:var(--warn);
+  text-shadow:1px 1px 0 rgba(0,0,0,.8);
+  word-break:break-word;
+}
+
+.sys-card:hover .sys-tv{
+  border-color:#4a4a4a;
+  transform:translateY(-2px);
+  transition:.2s;
+}
+
+/* =========================================================
+   LEAD (форма в VHS)
+   ========================================================= */
+.lead-section{background:var(--bg-2)}
+.lead-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.lead-copy h2{margin-bottom:16px}
+.lead-title{
+  font-family:var(--wide);
+  font-weight:700;
+  font-size:clamp(22px,2.4vw,32px);
+  letter-spacing:-.01em;
+  line-height:1.15;
+}
+.lead-copy p{color:var(--text-2);font-size:14px;margin-bottom:24px;max-width:440px}
+.contact-lines{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:20px}
+.contact-line{display:flex;gap:14px;align-items:flex-start;font-size:13px}
+.contact-line .k{color:var(--muted);min-width:110px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;padding-top:2px}
+.contact-line .v{color:var(--text)}
+
+.term-status{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);
+}
+.term-status.ok{color:var(--on)}
+.term-body{padding:24px 22px;position:relative;z-index:3}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.optional{color:var(--muted);font-weight:400;letter-spacing:0;text-transform:none}
+.field input,.field select,.field textarea{
+  width:100%;background:#0a0a0a;border:1px solid var(--line);border-radius:3px;
+  padding:11px 12px;color:var(--text);font-family:var(--mono);font-size:13.5px;
+  outline:none;transition:.15s;
+}
+.field input::placeholder,.field textarea::placeholder{color:#5c5852}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--warn)}
+.field textarea{resize:vertical;min-height:72px}
+.field .err{display:none;color:var(--red);font-size:11px;margin-top:5px;font-family:var(--body)}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--red)}
+.field.invalid .err{display:block}
+.term-foot{padding:0 22px 16px;position:relative;z-index:3}
+.form-note{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.5}
+.form-msg{display:none;margin-top:14px;padding:12px 14px;border-radius:3px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.form-msg.ok{display:flex;align-items:center;gap:8px;background:var(--on-soft);border:1px solid rgba(127,166,80,.5);color:var(--on);font-weight:600}
+.form-msg.ok::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--on)}
+
+/* Шкала */
+.level{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 22px;border-top:1px solid var(--line);background:#0e0e0e;
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  position:relative;z-index:3;
+}
+.level-label{flex:none}
+.level-track{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;flex:1}
+.level-track span{height:6px;background:var(--line);display:block;border-radius:1px;transition:.2s}
+.level-track span.on{background:var(--warn)}
+.level-track span.on:nth-child(odd){background:#ffb92e}
+.level-pct{flex:none;color:var(--warn);min-width:34px;text-align:right}
+
+/* =========================================================
+   CONTACTS (VHS-табло)
+   ========================================================= */
+.contacts-section{background:var(--bg)}
+.vhs-board .board{position:relative;z-index:3}
+.board{
+  border:none;background:transparent;font-family:var(--mono);
+}
+.board-row{
+  display:grid;grid-template-columns:1fr 1.6fr 140px;gap:16px;align-items:center;
+  padding:14px 20px;border-bottom:1px solid var(--line-soft);
+  font-size:13px;
+}
+.board-row:last-child{border-bottom:none}
+.board-head{
+  background:#0e0e0e;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);border-bottom:1px solid var(--line);
+}
+.board-row > span:first-child{color:var(--muted);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.board-row > span:nth-child(2){color:var(--text)}
+.board-ok,.board-wait{display:inline-flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.board-ok{color:var(--on)}
+.board-wait{color:var(--warn)}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{padding:34px 0;background:#050505;color:var(--text-2);border-top:1px solid var(--line)}
+.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.logo-footer{color:var(--text);margin-bottom:10px}
+.footer-meta{font-family:var(--mono);font-size:11px;line-height:1.7;text-align:right;color:var(--muted)}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width:1024px){
+  .hero-bottom{grid-template-columns:1fr;gap:32px}
+  .vhs-panel{max-width:520px}
+  .system-grid{grid-template-columns:repeat(2,1fr)}
+  .lead-grid{grid-template-columns:1fr}
+  .channel{grid-template-columns:auto 1fr auto;gap:14px}
+  .ch-tags{display:none}
+  .ch-state{grid-column:2;grid-row:2}
+}
+@media (max-width:720px){
+  .nav-links{display:none}
+  .burger{display:grid;place-items:center}
+  .statusbar-inner{font-size:10px;gap:14px;height:auto;padding:8px 0}
+  .sb-right{margin-left:0}
+  .hero{padding:32px 0 40px}
+  .section{padding:52px 0}
+  .t-line-1{font-size:clamp(34px,10vw,64px)}
+  .t-line-2{font-size:clamp(36px,11vw,70px);padding-left:clamp(12px,5vw,36px)}
+  .t-line-3{font-size:clamp(28px,9vw,56px);padding-left:clamp(24px,10vw,70px)}
+  .t-pixel{font-size:.46em}
+  .system-grid{grid-template-columns:1fr}
+  .board-row{grid-template-columns:1fr;gap:6px;padding:14px 16px}
+  .board-head{display:none}
+  .board-row > span:first-child{font-size:10px}
+  .contact-line{flex-direction:column;gap:2px}
+  .contact-line .k{min-width:0}
+  .footer-meta{text-align:left}
+}
+@media (max-width:400px){
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{width:100%}
+  .channel{grid-template-columns:auto 1fr;gap:10px}
+  .ch-num{display:none}
+  .t-pixel{font-size:.42em}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important}
+  html{scroll-behavior:auto}
+  .ticker-track{animation:none}
+  .blink,.vhs-screen::after{animation:none}
+}
+@media (max-width:720px){
+  .hero-credit{
+    right:12px;
+    bottom:8px;
+    font-size:9px;
+    padding:3px 6px;
+  }
+}

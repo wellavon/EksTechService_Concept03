@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ЭксТехСервис — ремонт и обслуживание спецтехники в Сыктывкаре</title>
+<meta name="description" content="Ремонт и обслуживание спецтехники и узлов: экскаваторы, погрузчики, гидравлика, редукторы хода, распределители, ДВС, запчасти. Сыктывкар, м. Дырнос, 98.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Press+Start+2P&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= TOP STATUS BAR ================= -->
+<div class="statusbar">
+  <div class="wrap statusbar-inner">
+    <span class="sb-item"><span class="dot dot-on"></span> REC · Приём заявок: Пн–Пт 09:00–18:00</span>
+    <span class="sb-item"><span class="dot dot-warn"></span> Сыктывкар · м. Дырнос, 98</span>
+    <span class="sb-item sb-right"><span class="dot dot-on blink"></span> CH 01 · На связи</span>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="logo">
+      <span class="logo-mark">Э</span>
+      <span class="logo-text">ЭксТехСервис</span>
+    </a>
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#services">Услуги</a>
+      <a href="#trust">Почему мы</a>
+      <a href="#lead">Заявка</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:+70000000000" class="btn btn-call">Позвонить</a>
+      <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="mobileMenu">☰</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Услуги</a>
+    <a href="#trust">Почему мы</a>
+    <a href="#lead">Заявка</a>
+    <a href="#contacts">Контакты</a>
+    <a href="tel:+70000000000">Позвонить</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <span class="hero-credit">Фон: изображение сгенерировано ИИ</span>
+  <div class="hero-noise" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-head">
+      <span class="hero-kicker"><span class="dot dot-on blink"></span> Сыктывкар · м. Дырнос, 98</span>
+
+      <h1 class="hero-title" aria-label="Ремонт спецтехники и узлов">
+        <span class="t-line t-line-1"><span class="t-pixel">Ремонт</span></span>
+        <span class="t-line t-line-2"><span class="t-wide">спецтехники</span></span>
+        <span class="t-line t-line-3"><span class="t-wide">и узлов</span></span>
+      </h1>
+    </div>
+
+    <div class="hero-bottom">
+      <div class="hero-copy">
+        <p class="hero-lead">
+          Экскаваторы, погрузчики, гидравлика, редукторы хода, распределители и ДВС.
+          Собственная ремонтная база, выездной сервис и гарантия на работы.
+        </p>
+        <div class="hero-cta">
+          <a href="#lead" class="btn btn-primary">Запросить расчёт</a>
+          <a href="tel:+70000000000" class="btn btn-ghost">Позвонить</a>
+        </div>
+      </div>
+
+      <!-- Панель статуса как VHS-монитор -->
+      <div class="vhs vhs-panel" aria-label="Панель статуса">
+        <div class="vhs-screen">
+          <div class="vhs-scan" aria-hidden="true"></div>
+          <div class="vhs-head">
+            <span class="vhs-rec"><span class="dot dot-warn blink"></span> REC</span>
+            <span class="vhs-ch">CH 01</span>
+          </div>
+          <ul class="panel-list">
+            <li class="panel-item"><span class="dot dot-on"></span><span class="pi-name">Приём заявок</span><span class="pi-state">Активен</span></li>
+            <li class="panel-item"><span class="dot dot-on"></span><span class="pi-name">Выездной сервис</span><span class="pi-state">По согласованию</span></li>
+            <li class="panel-item"><span class="dot dot-on"></span><span class="pi-name">Гарантия на работы</span><span class="pi-state">Уточняется</span></li>
+            <li class="panel-item"><span class="dot dot-warn"></span><span class="pi-name">Своя база</span><span class="pi-state">Сыктывкар</span></li>
+            <li class="panel-item"><span class="dot dot-on"></span><span class="pi-name">Опытные специалисты</span><span class="pi-state">В строю</span></li>
+          </ul>
+          <div class="panel-foot">
+            <span class="panel-clock" id="panelClock">--:--:--</span>
+            <span class="panel-tz">Сыктывкар</span>
+          </div>
+        </div>
+        <div class="vhs-label">VHS · STATUS</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <span>▶ PLAY</span><span>·</span>
+    <span>Ремонт спецтехники</span><span>·</span>
+    <span>Гидравлические насосы</span><span>·</span>
+    <span>Редукторы хода</span><span>·</span>
+    <span>Распределители</span><span>·</span>
+    <span>ДВС</span><span>·</span>
+    <span>Запасные части</span><span>·</span>
+    <span>Выездной сервис</span><span>·</span>
+    <span>Гарантия на работы</span><span>·</span>
+  </div>
+</div>
+
+<!-- ================= SERVICES ================= -->
+<section id="services" class="section services-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Услуги</span>
+      <h2>Что ремонтируем</h2>
+      <p>Перечень работ и стоимость — после осмотра и согласования. Точный объём уточняется у клиента.</p>
+    </div>
+
+    <ul class="channels">
+      <li class="channel" tabindex="0">
+        <span class="ch-indicator"><span class="dot dot-on"></span></span>
+        <span class="ch-num">01</span>
+        <div class="ch-body">
+          <b>Ремонт спецтехники</b>
+          <p>Экскаваторы, погрузчики, экскаваторы-погрузчики. Диагностика и восстановление.</p>
+        </div>
+        <span class="ch-tags">Hitachi · JCB · Volvo · Hyundai</span>
+        <span class="ch-state">Активен</span>
+      </li>
+      <li class="channel" tabindex="0">
+        <span class="ch-indicator"><span class="dot dot-on"></span></span>
+        <span class="ch-num">02</span>
+        <div class="ch-body">
+          <b>Гидравлические насосы</b>
+          <p>Ремонт и обслуживание гидронасосов, поиск неисправностей гидросистемы.</p>
+        </div>
+        <span class="ch-tags">Гидравлика · Диагностика</span>
+        <span class="ch-state">Активен</span>
+      </li>
+      <li class="channel" tabindex="0">
+        <span class="ch-indicator"><span class="dot dot-on"></span></span>
+        <span class="ch-num">03</span>
+        <div class="ch-body">
+          <b>Редукторы хода</b>
+          <p>Ремонт и восстановление редукторов хода, устранение люфтов и шумов.</p>
+        </div>
+        <span class="ch-tags">Ходовая · Восстановление</span>
+        <span class="ch-state">Активен</span>
+      </li>
+      <li class="channel" tabindex="0">
+        <span class="ch-indicator"><span class="dot dot-warn"></span></span>
+        <span class="ch-num">04</span>
+        <div class="ch-body">
+          <b>Распределители</b>
+          <p>Обслуживание и ремонт гидрораспределителей, замена уплотнений и узлов.</p>
+        </div>
+        <span class="ch-tags">Гидравлика · Уплотнения</span>
+        <span class="ch-state">Приём</span>
+      </li>
+      <li class="channel" tabindex="0">
+        <span class="ch-indicator"><span class="dot dot-on"></span></span>
+        <span class="ch-num">05</span>
+        <div class="ch-body">
+          <b>Двигатели внутреннего сгорания</b>
+          <p>Ремонт и обслуживание ДВС спецтехники, диагностика и устранение неисправностей.</p>
+        </div>
+        <span class="ch-tags">ДВС · Диагностика</span>
+        <span class="ch-state">Активен</span>
+      </li>
+      <li class="channel" tabindex="0">
+        <span class="ch-indicator"><span class="dot dot-on"></span></span>
+        <span class="ch-num">06</span>
+        <div class="ch-body">
+          <b>Запасные части</b>
+          <p>Подбор и поставка запасных частей для ремонта и обслуживания техники.</p>
+        </div>
+        <span class="ch-tags">Подбор · Поставка</span>
+        <span class="ch-state">Активен</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= TRUST ================= -->
+<section id="trust" class="section trust-section">
+  <div class="trust-vhs" aria-hidden="true">
+    <div class="tv-screen tv-screen-1"></div>
+    <div class="tv-screen tv-screen-2"></div>
+    <div class="tv-screen tv-screen-3"></div>
+  </div>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Почему мы</span>
+      <h2 class="trust-title">Аргументы доверия</h2>
+      <p>Факты из брифа. Количественные показатели и сроки гарантии уточняются у клиента.</p>
+    </div>
+
+    <div class="system-grid">
+  <div class="sys-card">
+    <div class="sys-tv">
+      <div class="sys-tv-screen">
+        <div class="sys-tv-noise" aria-hidden="true"></div>
+        <div class="sys-tv-scan" aria-hidden="true"></div>
+        <div class="sys-tv-content">
+          <b class="sys-pixel">Опытные специалисты</b>
+          <p>Практический опыт ремонта спецтехники и узлов.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-card">
+    <div class="sys-tv">
+      <div class="sys-tv-screen">
+        <div class="sys-tv-noise" aria-hidden="true"></div>
+        <div class="sys-tv-scan" aria-hidden="true"></div>
+        <div class="sys-tv-content">
+          <b class="sys-pixel">Гарантия на работы</b>
+          <p>Условия и сроки гарантии уточняются у клиента.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-card">
+    <div class="sys-tv">
+      <div class="sys-tv-screen">
+        <div class="sys-tv-noise" aria-hidden="true"></div>
+        <div class="sys-tv-scan" aria-hidden="true"></div>
+        <div class="sys-tv-content">
+          <b class="sys-pixel">Выездной сервис</b>
+          <p>Выезд к технике по согласованию.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-card">
+    <div class="sys-tv">
+      <div class="sys-tv-screen">
+        <div class="sys-tv-noise" aria-hidden="true"></div>
+        <div class="sys-tv-scan" aria-hidden="true"></div>
+        <div class="sys-tv-content">
+          <b class="sys-pixel">Собственная ремонтная база</b>
+          <p>Ремонт на своей базе в Сыктывкаре.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sys-card">
+    <div class="sys-tv">
+      <div class="sys-tv-screen">
+        <div class="sys-tv-noise" aria-hidden="true"></div>
+        <div class="sys-tv-scan" aria-hidden="true"></div>
+        <div class="sys-tv-content">
+          <b class="sys-pixel">Приемлемые цены</b>
+          <p>Предварительный расчёт до начала работ.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= LEAD ================= -->
+<section id="lead" class="section lead-section">
+  <div class="wrap lead-grid">
+    <div class="lead-copy">
+      <span class="eyebrow">Заявка</span>
+      <h2 class="lead-title">Запросить предварительный расчёт</h2>
+      <p>Оставьте заявку — свяжемся в рабочее время и уточним детали. Форма демонстрационная: реальная отправка в MAX/почту не настроена.</p>
+      <div class="contact-lines">
+        <div class="contact-line"><span class="k">Адрес</span><span class="v">Сыктывкар, м. Дырнос, 98</span></div>
+        <div class="contact-line"><span class="k">График</span><span class="v">Пн–Пт, 09:00–18:00</span></div>
+        <div class="contact-line"><span class="k">Телефон</span><span class="v placeholder">уточнить у клиента</span></div>
+        <div class="contact-line"><span class="k">E-mail</span><span class="v placeholder">уточнить у клиента</span></div>
+        <div class="contact-line"><span class="k">MAX</span><span class="v placeholder">уточнить у клиента</span></div>
+      </div>
+    </div>
+
+    <div class="vhs vhs-form">
+      <div class="vhs-screen">
+        <div class="vhs-scan" aria-hidden="true"></div>
+        <div class="vhs-head">
+          <span class="vhs-play">▶ PLAY</span>
+          <span class="term-status" id="termStatus"><span class="dot dot-warn"></span> Ожидание</span>
+        </div>
+
+        <form id="leadForm" novalidate>
+          <div class="term-body">
+            <div class="field" id="f-name">
+              <label for="name">Имя</label>
+              <input type="text" id="name" name="name" placeholder="Как к вам обращаться" autocomplete="name">
+              <div class="err">Укажите имя (минимум 2 символа).</div>
+            </div>
+            <div class="field" id="f-phone">
+              <label for="phone">Телефон</label>
+              <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+              <div class="err">Укажите телефон в формате +7XXXXXXXXXX или 10–11 цифр.</div>
+            </div>
+            <div class="field" id="f-service">
+              <label for="service">Услуга</label>
+              <select id="service" name="service">
+                <option value="">Выберите категорию</option>
+                <option>Ремонт спецтехники</option>
+                <option>Гидравлические насосы</option>
+                <option>Редукторы хода</option>
+                <option>Распределители</option>
+                <option>Двигатели внутреннего сгорания</option>
+                <option>Запасные части</option>
+                <option>Другое / уточню</option>
+              </select>
+              <div class="err">Выберите услугу.</div>
+            </div>
+            <div class="field" id="f-comment">
+              <label for="comment">Комментарий <span class="optional">(необязательно)</span></label>
+              <textarea id="comment" name="comment" placeholder="Марка техники, неисправность, удобное время связи"></textarea>
+            </div>
+          </div>
+
+          <div class="term-foot">
+            <button type="submit" class="btn btn-primary btn-block">Отправить заявку</button>
+            <p class="form-note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Демо-форма, данные не отправляются.</p>
+            <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+          </div>
+
+          <div class="level" id="levelBar" aria-hidden="true">
+            <span class="level-label">Заполнение</span>
+            <div class="level-track">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <span class="level-pct" id="levelPct">0%</span>
+          </div>
+        </form>
+      </div>
+      <div class="vhs-label">VHS · FORM</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACTS ================= -->
+<section id="contacts" class="section contacts-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Контакты</span>
+      <h2>Как нас найти</h2>
+    </div>
+
+    <div class="vhs vhs-board">
+      <div class="vhs-screen">
+        <div class="vhs-scan" aria-hidden="true"></div>
+        <div class="vhs-head">
+          <span class="vhs-rec"><span class="dot dot-warn blink"></span> INFO</span>
+          <span class="vhs-ch">CH 02</span>
+        </div>
+
+        <div class="board">
+          <div class="board-row board-head">
+            <span>Параметр</span><span>Значение</span><span>Статус</span>
+          </div>
+          <div class="board-row"><span>Адрес</span><span>Сыктывкар, м. Дырнос, 98</span><span class="board-ok"><span class="dot dot-on"></span> ок</span></div>
+          <div class="board-row"><span>График</span><span>Пн–Пт, 09:00–18:00</span><span class="board-ok"><span class="dot dot-on"></span> ок</span></div>
+          <div class="board-row"><span>Телефон</span><span class="placeholder">уточнить у клиента</span><span class="board-wait"><span class="dot dot-warn"></span> уточнить</span></div>
+          <div class="board-row"><span>E-mail</span><span class="placeholder">уточнить у клиента</span><span class="board-wait"><span class="dot dot-warn"></span> уточнить</span></div>
+          <div class="board-row"><span>MAX</span><span class="placeholder">уточнить у клиента</span><span class="board-wait"><span class="dot dot-warn"></span> уточнить</span></div>
+        </div>
+      </div>
+      <div class="vhs-label">VHS · INFO</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <a href="#top" class="logo logo-footer"><span class="logo-mark">Э</span> ЭксТехСервис</a>
+      <p>Ремонт и обслуживание спецтехники и узлов. Сыктывкар, м. Дырнос, 98.</p>
+    </div>
+    <div class="footer-meta">
+      <p>© 2026 «ЭксТехСервис». Демонстрационная концепция.</p>
+      <p>Concept 04</p>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js" defer></script>
+</body>
+</html>
